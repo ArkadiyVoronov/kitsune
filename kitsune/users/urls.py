@@ -14,8 +14,8 @@ api_patterns = [
 # These will all start with /user/<user_id>/
 detail_patterns = [
     url(r'^$', views.profile, name='users.profile'),
-    url(r'^documents$', views.documents_contributed, name='users.documents'),
-    url(r'^edit$', views.edit_profile, name='users.edit_profile'),
+    url(r'^/documents$', views.documents_contributed, name='users.documents'),
+    url(r'^/edit$', views.edit_profile, name='users.edit_profile'),
     # TODO:
     # url('^abuse', views.report_abuse, name='users.abuse'),
 ]
@@ -86,7 +86,7 @@ users_patterns = [
 
 urlpatterns = [
     # URLs for a single user.
-    url(r'^user/(?P<username>[\w@\.\s+-]+)/', include(detail_patterns)),
+    url(r'^user/(?P<username>[\w@\.\s+-]+)', include(detail_patterns)),
     url(r'^user/(?P<object_id>\w+)/flag$', kitsune.flagit.views.flag,
         {'model': Profile}, name='users.flag'),
     url(r'^users/', include(users_patterns)),
